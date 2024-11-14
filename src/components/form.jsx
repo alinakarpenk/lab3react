@@ -8,7 +8,7 @@ import './style.css'
 const valid = yup.object().shape({
 edrpou: yup.string().matches(/^[0-9]{8,10}$/, "Введіть коректний ЄДРПОУ або РНОКПП").required("ЄДРПОУ або РНОКПП обов'язковий"),
 receiverName: yup.string().required("Введіть назву одержувача"),
-iban: yup.string().matches(/^UA\d{27}$/, "Введіть коректний IBAN").required("Рахунок IBAN обов'язковий"),
+iban: yup.string().matches(/^UA\d{29}$/, "Введіть коректний IBAN").required("Рахунок IBAN обов'язковий"),
 paymentPurpose: yup.string().required("Вкажіть призначення переказу"),
 isBudgetPayment: yup.boolean(),
 amount: yup.number().typeError("Сума повинна бути числом").positive("Сума має бути додатною").required("Сума обов'язкова"),
@@ -29,13 +29,13 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div class="receiver">
+      <div className="receiver">
       <h2>Одержувач</h2>
       <Input label="ЄДРПОУ або РНОКПП:" id="edrpou" register={register} errors={errors} type="text"/>
       <Input label="Назва одержувача:" id="receiverName" register={register} errors={errors} type="text"/>
       <Input label="Рахунок IBAN:" id="iban" register={register} errors={errors} type="text"/>
       </div>
-      <div class="category">
+      <div className="category">
       <h2>Категорія платежу</h2>
       <Input label="Бюджетний платіж" id="isBudgetPayment" register={register} errors={errors} type="checkbox"/>
       <Input label="Інші платежі:" id="paymentCategory" register={register} errors={errors} type="select"
@@ -47,7 +47,7 @@ const Form = () => {
   ]}/>
       <Input label="Призначення платежу:" id="paymentPurpose" register={register} errors={errors} type="text"/>
       </div>
-      <div class="contact">
+      <div className="contact">
         <h2> Дані карти </h2>
       <Input label="Ім'я відправника:" id="senderName" register={register} errors={errors} />
       <Input label="Номер картки:" id="cardNumber" register={register} errors={errors} type="text"/>
